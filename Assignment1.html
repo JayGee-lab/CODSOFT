@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JAYGEE's Portfolio</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#fff;
+}
+
+/* ================= HEADER ================= */
+
+header{
+    background:#2d2d2d;
+    color:white;
+    padding:20px 70px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo h1{
+    font-size:24px;
+    font-weight:bold;
+}
+
+.logo p{
+    font-size:14px;
+    color:#d0d0d0;
+}
+
+nav ul{
+    display:flex;
+    list-style:none;
+    gap:25px;
+}
+
+nav ul li a{
+    text-decoration:none;
+    color:white;
+    font-size:13px;
+    font-weight:bold;
+    text-transform:uppercase;
+}
+
+/* ================= HERO SECTION ================= */
+
+.hero{
+    background:#607D8B;
+    min-height:460px;
+    position:relative;
+    overflow:hidden;
+}
+
+.hero-content{
+    width:50%;
+    padding:100px 0 0 85px;
+    color:white;
+    position:relative;
+    z-index:2;
+}
+
+.hero-content h2{
+    font-size:56px;
+    font-weight:bold;
+    margin-bottom:25px;
+}
+
+.hero-content p{
+    font-size:18px;
+    line-height:1.7;
+    width:90%;
+}
+
+.btn{
+    display:inline-block;
+    margin-top:35px;
+    background:#2f80ff;
+    color:white;
+    text-decoration:none;
+    padding:14px 35px;
+    border-radius:3px;
+    font-weight:bold;
+}
+
+.hero-image{
+    position:absolute;
+    right:0;
+    top:0;
+    height:100%;
+    width:48%;
+    display:flex;
+    align-items:flex-start;
+    justify-content:flex-end;
+}
+
+.hero-image img{
+    height:100%;
+    object-fit:cover;
+    opacity:0.95;
+}
+
+/* ================= ABOUT SECTION ================= */
+
+.about{
+    background:#f5f5f5;
+    padding:60px 80px;
+    display:flex;
+    align-items:center;
+    gap:80px;
+}
+
+.about-image{
+    flex:1;
+}
+
+.about-image img{
+    width:100%;
+    max-width:380px;
+    display:block;
+}
+
+.about-content{
+    flex:1.2;
+}
+
+.about-content h2{
+    font-size:48px;
+    color:#111;
+    margin-bottom:10px;
+}
+
+.line{
+    width:45px;
+    height:4px;
+    background:#2f80ff;
+    margin-bottom:25px;
+}
+
+.about-content h3{
+    color:#555;
+    font-weight:normal;
+    font-size:28px;
+    margin-bottom:25px;
+}
+
+.about-content p{
+    color:#666;
+    line-height:1.8;
+    margin-bottom:30px;
+}
+
+.download-btn{
+    display:inline-block;
+    background:#2f80ff;
+    color:white;
+    text-decoration:none;
+    padding:12px 28px;
+    font-weight:bold;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:992px){
+
+    header{
+        flex-direction:column;
+        gap:20px;
+    }
+
+    nav ul{
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+
+    .hero-content{
+        width:100%;
+        padding:60px 30px;
+    }
+
+    .hero-image{
+        position:relative;
+        width:100%;
+        height:400px;
+        justify-content:center;
+    }
+
+    .about{
+        flex-direction:column;
+        text-align:center;
+    }
+
+    .line{
+        margin:auto auto 25px;
+    }
+}
+</style>
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <h1>JAYGEE's Portfolio</h1>
+        <p>My Blog site</p>
+    </div>
+
+    <nav>
+        <ul>
+            <li><a href="#">HOME</a></li>
+            <li><a href="#">ABOUT ME</a></li>
+            <li><a href="#">SERVICES</a></li>
+            <li><a href="#">SKILL</a></li>
+            <li><a href="#">TESTIMONIAL</a></li>
+            <li><a href="#">EXPERIENCE</a></li>
+            <li><a href="#">WORKS</a></li>
+            <li><a href="#">BLOG</a></li>
+            <li><a href="#">CONTACT US</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- HERO SECTION -->
+
+<section class="hero">
+
+    <div class="hero-content">
+        <h2>JUSTIN MARIMWE MUTSEERERWA</h2>
+
+        <p>
+            Hi, I am a B.Sc(IT) Student and Aspiring Web Developer.
+I have gained practical experience in Information Technology,
+I'd like to help organizations build innovative web solutions. 
+        </p>
+
+        <a href="#" class="btn">Hire Me</a>
+    </div>
+
+    <div class="hero-image">
+        <img src="jaj.jpeg" alt="Portfolio Image">
+    </div>
+
+</section>
+
+<!-- ABOUT SECTION -->
+
+<section class="about">
+
+    <div class="about-image">
+        <img src="jaj.jpeg" alt="About Me">
+    </div>
+
+    <div class="about-content">
+        <h2>ABOUT ME</h2>
+        <div class="line"></div>
+
+        <h3>
+            I am a B.Sc(IT) student blending academic knowledge with emerging technical skills to support future web development and cyber forensics projects.
+        </h3>
+
+        <p>
+            B.Sc(IT) Students build technical knowledge and practical skills
+to learn, design, develop and test modern web applications.
+They study software development, networking and cybersecurity
+to understand industry practices and emerging technologies.
+Aspiring to become Web Developers and Cyber-Forensic Officers,
+they work on projects involving websites, digital investigations
+and secure systems. In addition to gaining academic knowledge,
+students continuously improve their skills through hands-on practice.
+
+        </p>
+
+        <a href="#" class="download-btn">DOWNLOAD RESUME</a>
+    </div>
+
+</section>
+
+</body>
+</html>

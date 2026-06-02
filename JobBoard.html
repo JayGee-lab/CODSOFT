@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JayGee Job Board</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:linear-gradient(180deg,#607D8B,#D3D3D3);
+}
+
+header{
+background:#2F4F4F;
+color:white;
+padding:15px 8%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.logo{
+font-size:28px;
+font-weight:bold;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin-left:20px;
+}
+
+.hero{
+background:linear-gradient(135deg,#708090,#2196f3);
+color:white;
+padding:100px 8%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+flex-wrap:wrap;
+}
+
+.hero-content{
+max-width:500px;
+}
+
+.hero h1{
+font-size:55px;
+margin-bottom:20px;
+}
+
+.hero p{
+margin-bottom:25px;
+}
+
+.btn{
+background:#00c853;
+padding:12px 25px;
+border:none;
+color:white;
+border-radius:5px;
+cursor:pointer;
+text-decoration:none;
+}
+
+.section{
+padding:60px 8%;
+}
+
+.search-box{
+display:flex;
+gap:10px;
+margin-bottom:30px;
+}
+
+.search-box input{
+flex:1;
+padding:12px;
+border:1px solid #ccc;
+border-radius:5px;
+}
+
+.search-box button{
+padding:12px 20px;
+background:#0d6efd;
+color:white;
+border:none;
+border-radius:5px;
+cursor:pointer;
+}
+
+.jobs{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:20px;
+}
+
+.job-card{
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 2px 10px rgba(0,0,0,.1);
+}
+
+.job-card h3{
+margin-bottom:10px;
+}
+
+.job-card p{
+margin-bottom:8px;
+}
+
+.job-card button{
+margin-top:10px;
+width:100%;
+padding:10px;
+background:#00c853;
+border:none;
+color:white;
+border-radius:5px;
+cursor:pointer;
+}
+
+.dashboard{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px;
+}
+
+.card{
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 2px 10px rgba(0,0,0,.1);
+}
+
+form{
+display:flex;
+flex-direction:column;
+gap:10px;
+}
+
+input,
+textarea,
+select{
+padding:10px;
+border:1px solid #ccc;
+border-radius:5px;
+}
+
+form button{
+padding:12px;
+background:#0d6efd;
+border:none;
+color:white;
+border-radius:5px;
+cursor:pointer;
+}
+
+.modal{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.5);
+justify-content:center;
+align-items:center;
+}
+
+.modal-content{
+background:white;
+padding:25px;
+width:90%;
+max-width:500px;
+border-radius:10px;
+}
+
+footer{
+background:#222;
+color:white;
+text-align:center;
+padding:20px;
+margin-top:50px;
+}
+
+@media(max-width:768px){
+
+.hero h1{
+font-size:38px;
+}
+
+.dashboard{
+grid-template-columns:1fr;
+}
+}
+</style>
+</head>
+<body>
+
+<header>
+<div class="logo">JayGee Job Board</div>
+
+<nav>
+<a href="#">Home</a>
+<a href="#">Jobs</a>
+<a href="#">Employer</a>
+<a href="#">Candidate</a>
+</nav>
+</header>
+
+<section class="hero">
+<div class="hero-content">
+<h1>Find Your Dream Job</h1>
+
+<p>
+Browse thousands of opportunities from top employers.
+</p>
+
+<button class="btn">
+Upload Resume
+</button>
+</div>
+</section>
+
+<section class="section">
+
+<h2>Search Jobs</h2>
+
+<div class="search-box">
+<input type="text" id="searchInput" placeholder="Search jobs">
+<button onclick="searchJobs()">Search</button>
+</div>
+
+<div class="jobs" id="jobsContainer"></div>
+
+</section>
+
+<section class="section">
+
+<h2>Employer Dashboard</h2>
+
+<div class="card">
+
+<form id="jobForm">
+
+<input
+type="text"
+id="title"
+placeholder="Job Title"
+required>
+
+<input
+type="text"
+id="company"
+placeholder="Company"
+required>
+
+<input
+type="text"
+id="location"
+placeholder="Location"
+required>
+
+<input
+type="text"
+id="salary"
+placeholder="Salary">
+
+<textarea
+id="description"
+placeholder="Job Description"
+required>
+</textarea>
+
+<button type="submit">
+Post Job
+</button>
+
+</form>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<h2>Candidate Dashboard</h2>
+
+<div class="dashboard">
+
+<div class="card">
+
+<h3>Profile</h3>
+
+<form>
+
+<input type="text" placeholder="Full Name">
+
+<input type="email" placeholder="Email">
+
+<input type="file">
+
+<button>
+Save Profile
+</button>
+
+</form>
+
+</div>
+
+<div class="card">
+
+<h3>My Applications</h3>
+
+<ul id="applications">
+</ul>
+
+</div>
+
+</div>
+
+</section>
+
+<div class="modal" id="applicationModal">
+
+<div class="modal-content">
+
+<h2>Apply for Job</h2>
+
+<form id="applicationForm">
+
+<input
+type="text"
+placeholder="Full Name"
+required>
+
+<input
+type="email"
+placeholder="Email"
+required>
+
+<input
+type="file"
+required>
+
+<button>
+Submit Application
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+<footer>
+© JayGee Job Board Platform
+</footer>
+
+<script>
+
+let jobs = [
+
+{
+id:1,
+title:"Frontend Developer",
+company:"Google",
+location:"Remote",
+salary:"$80,000",
+description:"React Developer Required"
+},
+
+{
+id:2,
+title:"Backend Developer",
+company:"Microsoft",
+location:"USA",
+salary:"$90,000",
+description:"Node.js Developer Required"
+},
+
+{
+id:3,
+title:"Cyber Security Analyst",
+company:"IBM",
+location:"Canada",
+salary:"$95,000",
+description:"Security Analyst Position"
+}
+
+];
+
+let selectedJob = null;
+
+function displayJobs(list){
+
+const container =
+document.getElementById("jobsContainer");
+
+container.innerHTML = "";
+
+list.forEach(job=>{
+
+container.innerHTML += `
+<div class="job-card">
+
+<h3>${job.title}</h3>
+
+<p><strong>Company:</strong> ${job.company}</p>
+
+<p><strong>Location:</strong> ${job.location}</p>
+
+<p><strong>Salary:</strong> ${job.salary}</p>
+
+<p>${job.description}</p>
+
+<button onclick="applyJob(${job.id})">
+Apply Now
+</button>
+
+</div>
+`;
+
+});
+}
+
+displayJobs(jobs);
+
+function searchJobs(){
+
+const keyword =
+document.getElementById("searchInput")
+.value.toLowerCase();
+
+const filtered =
+jobs.filter(job =>
+job.title.toLowerCase().includes(keyword)
+||
+job.company.toLowerCase().includes(keyword)
+);
+
+displayJobs(filtered);
+}
+
+document
+.getElementById("jobForm")
+.addEventListener("submit",function(e){
+
+e.preventDefault();
+
+const job = {
+
+id: Date.now(),
+
+title:
+document.getElementById("title").value,
+
+company:
+document.getElementById("company").value,
+
+location:
+document.getElementById("location").value,
+
+salary:
+document.getElementById("salary").value,
+
+description:
+document.getElementById("description").value
+
+};
+
+jobs.push(job);
+
+displayJobs(jobs);
+
+alert("Job Posted Successfully");
+
+this.reset();
+
+});
+
+function applyJob(id){
+
+selectedJob = id;
+
+document
+.getElementById("applicationModal")
+.style.display = "flex";
+}
+
+document
+.getElementById("applicationForm")
+.addEventListener("submit",function(e){
+
+e.preventDefault();
+
+document
+.getElementById("applications")
+.innerHTML +=
+`<li>Application submitted for Job ID ${selectedJob}</li>`;
+
+alert(
+"Application Submitted Successfully. Email Notification Sent."
+);
+
+document
+.getElementById("applicationModal")
+.style.display = "none";
+
+this.reset();
+});
+
+window.onclick = function(event){
+
+const modal =
+document.getElementById("applicationModal");
+
+if(event.target === modal){
+
+modal.style.display = "none";
+}
+}
+
+</script>
+
+</body>
+</html>

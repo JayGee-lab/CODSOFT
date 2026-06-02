@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Online Quiz Maker</title>
+<link rel="stylesheet" href="quiz.css">
+</head>
+<body>
+
+<header>
+    <h1>Quiz Maker Platform</h1>
+
+    <div id="userArea">
+        <span id="currentUser"></span>
+        <button onclick="logout()">Logout</button>
+    </div>
+</header>
+
+<!-- HOME -->
+<section id="homePage" class="page active">
+    <div class="card">
+        <h2>Welcome to Quiz Maker</h2>
+        <p>Create quizzes and challenge your friends.</p>
+
+        <button onclick="showPage('registerPage')">Register</button>
+        <button onclick="showPage('loginPage')">Login</button>
+        <button onclick="showPage('quizListPage')">Take Quiz</button>
+    </div>
+</section>
+
+<!-- REGISTER -->
+<section id="registerPage" class="page">
+    <div class="card">
+        <h2>Register</h2>
+
+        <input type="text" id="regUser" placeholder="Username">
+        <input type="password" id="regPass" placeholder="Password">
+
+        <button onclick="register()">Register</button>
+        <button onclick="showPage('homePage')">Back</button>
+    </div>
+</section>
+
+<!-- LOGIN -->
+<section id="loginPage" class="page">
+    <div class="card">
+        <h2>Login</h2>
+
+        <input type="text" id="loginUser" placeholder="Username">
+        <input type="password" id="loginPass" placeholder="Password">
+
+        <button onclick="login()">Login</button>
+        <button onclick="showPage('homePage')">Back</button>
+    </div>
+</section>
+
+<!-- QUIZ LIST -->
+<section id="quizListPage" class="page">
+    <div class="card">
+        <h2>Available Quizzes</h2>
+
+        <button onclick="showPage('createQuizPage')">
+            Create New Quiz
+        </button>
+
+        <div id="quizList"></div>
+
+        <button onclick="showPage('homePage')">
+            Home
+        </button>
+    </div>
+</section>
+
+<!-- CREATE QUIZ -->
+<section id="createQuizPage" class="page">
+    <div class="card">
+        <h2>Create Quiz</h2>
+
+        <input type="text" id="quizTitle" placeholder="Quiz Title">
+
+        <div id="questionContainer"></div>
+
+        <button onclick="addQuestion()">
+            Add Question
+        </button>
+
+        <button onclick="saveQuiz()">
+            Save Quiz
+        </button>
+
+        <button onclick="showPage('quizListPage')">
+            Back
+        </button>
+    </div>
+</section>
+
+<!-- TAKE QUIZ -->
+<section id="takeQuizPage" class="page">
+    <div class="card">
+        <h2 id="takeQuizTitle"></h2>
+
+        <div id="quizQuestion"></div>
+
+        <button onclick="nextQuestion()">
+            Next
+        </button>
+    </div>
+</section>
+
+<!-- RESULTS -->
+<section id="resultPage" class="page">
+    <div class="card">
+        <h2>Quiz Results</h2>
+
+        <h3 id="scoreDisplay"></h3>
+
+        <div id="answerReview"></div>
+
+        <button onclick="showPage('quizListPage')">
+            Back to Quizzes
+        </button>
+    </div>
+</section>
+
+<script src="quiz.js"></script>
+</body>
+</html>
